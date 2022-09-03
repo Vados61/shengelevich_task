@@ -55,3 +55,4 @@ class Lector:
 students = [Student(student) for student in student_list]
 lectors = [Lector(lector, random.sample(lector_skills, 2)) for lector in lector_list]
 
+# Привет Хуцкар

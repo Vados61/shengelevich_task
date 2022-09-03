@@ -50,10 +50,10 @@ class Lector:
 
     def cheak_matching(self, tegs):
         if self.tegs & tegs:
-            teg = ''
-            for i in  self.tegs:
-                teg += f'{i} '
-            return f'Вам подошел {self.name} с навыками:{teg}'
+            teg = []
+            for i in self.tegs:
+                teg.append(i)
+            return f'Вам подошел {self.name} с навыками:{teg[0]} и {teg[1]}'
 
 
 students = [Student(student) for student in student_list]

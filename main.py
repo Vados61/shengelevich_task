@@ -1,5 +1,34 @@
+'''
+1. нужно выбрать и сделать импорт модуля для работы с ботом
+2. сделать нормальные теги
+3. сделать нормальные имена лекторов и увеличить их колличество
+4. реализовать логику диалога бота с пользователем
+'''
+
 import random
 
+
+lector_list = [
+    'lector_Вася',
+    'lector_Петя',
+    'lector_Коля',
+    'lector_Саша',
+    'lector_Ваня',
+    'lector_Леша',
+    'lector_Ваня',
+    'lector_Юра',
+    'lector_Володя',
+    'lector_Паша',
+    'lector_Даня',
+    'lector_Сережа',
+    'lector_Женя',
+    'lector_Лена',
+    'lector_Катя',
+    'lector_Даша',
+    'lector_Света',
+    'lector_Маша',
+
+]
 student_list = [
     'sudent_1',
     'sudent_2',
@@ -13,25 +42,25 @@ student_list = [
     'sudent_10'
 ]
 
-lector_list = [
-    'lector_1',
-    'lector_2',
-    'lector_3',
-    'lector_4',
-    'lector_5'
-]
-
 lector_tegs = {
-    'skill_1',
-    'skill_2',
-    'skill_3',
-    'skill_4',
-    'skill_5',
-    'skill_6',
-    'skill_7',
-    'skill_8',
-    'skill_9',
-    'skill_10'
+     'skill_быстрый',
+    'skill_сильный',
+    'skill_смелый',
+    'skill_высокий',
+    'skill_красивый',
+    'skill_умный',
+    'skill_ловкий',
+    'skill_хитрый',
+    'skill_дальновидный',
+    'skill_образованый',
+    'skill_храбрый',
+    'skill_лютый',
+    'skill_веселый',
+    'skill_увереный',
+    'skill_спокойный',
+    'skill_холоднокровный',
+    'skill_авторитарный',
+    'skill_дисциплинированный',
 }
 
 

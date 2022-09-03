@@ -21,7 +21,7 @@ lector_list = [
     'lector_5'
 ]
 
-lector_skills = [
+lector_tegs = {
     'skill_1',
     'skill_2',
     'skill_3',
@@ -32,7 +32,7 @@ lector_skills = [
     'skill_8',
     'skill_9',
     'skill_10'
-]
+}
 
 
 class Student:
@@ -41,18 +41,27 @@ class Student:
         self.name = name
         self.lector_pull = ()
 
-    def matching(self):
-        pass
-
 
 class Lector:
 
-    def __init__(self, name, skills):
+    def __init__(self, name, tegs):
         self.name = name
-        self.skills = skills
+        self.tegs = set(tegs)
+
+    def cheak_matching(self, tegs):
+        if self.tegs & tegs:
+            teg = ''
+            for i in  self.tegs:
+                teg += f'{i} '
+            return f'Вам подошел {self.name} с навыками:{teg}'
 
 
 students = [Student(student) for student in student_list]
-lectors = [Lector(lector, random.sample(lector_skills, 2)) for lector in lector_list]
+lectors = [Lector(lector, random.sample(lector_tegs, 2)) for lector in lector_list]
 
-# Привет Хуцкар
+tegs = set(random.sample(lector_tegs, 3))
+
+for lector in lectors:
+
+    if lector.cheak_matching(tegs):
+        print(lector.cheak_matching(tegs))

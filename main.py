@@ -4,64 +4,21 @@
 3. сделать нормальные имена лекторов и увеличить их колличество
 4. реализовать логику диалога бота с пользователем
 '''
-
 import random
+from aiogram import Bot, types
+from aiogram.dispatcher import Dispatcher
+from aiogram.utils import executor
+
+from data import *
+
+TOKEN = "5562333620:AAFEDZ2_5EWbPOWPEbrZwVKlfOo-X0MRYmw"
+bot = Bot(token=TOKEN)
+dp = Dispatcher(bot)
 
 
-lector_list = [
-    'lector_Вася',
-    'lector_Петя',
-    'lector_Коля',
-    'lector_Саша',
-    'lector_Ваня',
-    'lector_Леша',
-    'lector_Ваня',
-    'lector_Юра',
-    'lector_Володя',
-    'lector_Паша',
-    'lector_Даня',
-    'lector_Сережа',
-    'lector_Женя',
-    'lector_Лена',
-    'lector_Катя',
-    'lector_Даша',
-    'lector_Света',
-    'lector_Маша',
-
-]
-student_list = [
-    'sudent_1',
-    'sudent_2',
-    'sudent_3',
-    'sudent_4',
-    'sudent_5',
-    'sudent_6',
-    'sudent_7',
-    'sudent_8',
-    'sudent_9',
-    'sudent_10'
-]
-
-lector_tegs = {
-     'skill_быстрый',
-    'skill_сильный',
-    'skill_смелый',
-    'skill_высокий',
-    'skill_красивый',
-    'skill_умный',
-    'skill_ловкий',
-    'skill_хитрый',
-    'skill_дальновидный',
-    'skill_образованый',
-    'skill_храбрый',
-    'skill_лютый',
-    'skill_веселый',
-    'skill_увереный',
-    'skill_спокойный',
-    'skill_холоднокровный',
-    'skill_авторитарный',
-    'skill_дисциплинированный',
-}
+@dp.message_handler(commands=['start'])
+async def send_welcome(message: types.Message):
+    await message.answer(f"Для вас доступны преподаватели с навыками {lector_tegs}")
 
 
 class Student:
@@ -82,10 +39,9 @@ class Lector:
             teg = []
             for i in self.tegs:
                 teg.append(i)
-            return f'Вам подошел {self.name} с навыками:{teg[0]} и {teg[1]}'
+            return f'Вам подошел {self.name} с навыками: {teg[0]} и {teg[1]}'
 
 
-students = [Student(student) for student in student_list]
 lectors = [Lector(lector, random.sample(lector_tegs, 2)) for lector in lector_list]
 
 tegs = set(random.sample(lector_tegs, 3))
@@ -94,3 +50,6 @@ for lector in lectors:
 
     if lector.cheak_matching(tegs):
         print(lector.cheak_matching(tegs))
+
+if __name__ == '__main__':
+    executor.start_polling(dp)

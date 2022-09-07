@@ -18,7 +18,21 @@ dp = Dispatcher(bot)
 
 @dp.message_handler(commands=['start'])
 async def send_welcome(message: types.Message):
-    await message.answer(f"Для вас доступны преподаватели с навыками {lector_tegs}")
+    print('1')
+    answer = "Введите через пробел три предпочтительных навыка:"
+    for id, item in enumerate(lector_tags):
+        answer += f'\n{id + 1}. {item}'
+    await message.answer(answer)
+
+
+@dp.message_handler()
+async def send_matching_result(message: types.Message):
+    tags = set(message.text.split(' '))
+    answer = 'По вашим критериям подходят следущие лекторы:'
+    for lector in lectors:
+        if lector.cheak_matching(tags):
+            answer += lector.cheak_matching(tags)
+    await message.answer(answer)
 
 
 class Student:
@@ -30,26 +44,26 @@ class Student:
 
 class Lector:
 
-    def __init__(self, name, tegs):
+    def __init__(self, name, tags):
         self.name = name
-        self.tegs = set(tegs)
+        self.tags = set(tags)
 
     def cheak_matching(self, tegs):
-        if self.tegs & tegs:
+        if self.tags & tegs:
             teg = []
-            for i in self.tegs:
+            for i in self.tags:
                 teg.append(i)
-            return f'Вам подошел {self.name} с навыками: {teg[0]} и {teg[1]}'
+            return f'\n{self.name} с навыками: {teg[0]} и {teg[1]}'
 
 
-lectors = [Lector(lector, random.sample(lector_tegs, 2)) for lector in lector_list]
+lectors = [Lector(lector, random.sample(lector_tags, 2)) for lector in lector_list]
 
-tegs = set(random.sample(lector_tegs, 3))
-
-for lector in lectors:
-
-    if lector.cheak_matching(tegs):
-        print(lector.cheak_matching(tegs))
+# tegs = set(random.sample(lector_tegs, 3))
+#
+# for lector in lectors:
+#
+#     if lector.cheak_matching(tegs):
+#         print(lector.cheak_matching(tegs))
 
 if __name__ == '__main__':
     executor.start_polling(dp)

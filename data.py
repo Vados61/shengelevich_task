@@ -20,7 +20,7 @@ lector_list = [
 
 ]
 
-lector_tegs = {
+lector_tags = {
      'skill_быстрый',
     'skill_сильный',
     'skill_смелый',

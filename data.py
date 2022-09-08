@@ -1,3 +1,5 @@
+TOKEN = "5562333620:AAFEDZ2_5EWbPOWPEbrZwVKlfOo-X0MRYmw"
+
 lector_list = [
     'lector_Вася',
     'lector_Петя',

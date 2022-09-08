@@ -39,7 +39,7 @@ async def user_register(message: types.Message):
 @dp.message_handler(state=UserState.name)
 async def get_username(message: types.Message, state: FSMContext):
     await state.update_data(username=message.text)
-    answer = "Введите через пробел три предпочтительных навыка:"
+    answer = "Введите через пробел три номера предпочтительных  навыков:"
     for id, item in enumerate(lector_tags):
         answer += f'\n{id + 1}. {item}'
     await message.answer(answer)
@@ -74,6 +74,7 @@ async def change_lector(message: types.Message, state: FSMContext):
             answer = f"Спасибо, {data['username']}" \
                      f"\nВы записаны к лектору {data['userlector']}"
             await message.answer(answer)
+            await state.finish()
 
 
 class Lector:

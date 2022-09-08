@@ -40,8 +40,8 @@ async def user_register(message: types.Message):
 async def get_username(message: types.Message, state: FSMContext):
     await state.update_data(username=message.text)
     answer = "Введите через пробел три номера предпочтительных  навыков:"
-    for id, item in enumerate(lector_tags):
-        answer += f'\n{id + 1}. {item}'
+    for num, item in enumerate(lector_tags):
+        answer += f'\n{num + 1}. {item}'
     await message.answer(answer)
     await UserState.next()
 
@@ -50,8 +50,8 @@ async def get_username(message: types.Message, state: FSMContext):
 async def change_tags(message: types.Message, state: FSMContext):
     user_indexes = [int(item) - 1 for item in message.text.split()]
     user_tags = set()
-    for id, tag in enumerate(lector_tags):
-        if id in user_indexes:
+    for num, tag in enumerate(lector_tags):
+        if num in user_indexes:
             user_tags.add(tag)
     await state.update_data(usertags=user_tags)
     answer = 'По вашим критериям подходят следущие лекторы:'
